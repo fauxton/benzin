@@ -21,11 +21,16 @@ module Benzin
     end
 
     def benzin_customization
+      invoke :hello
       invoke :goodbye
     end
 
+    def hello
+      say "Benzin is fueling your engine..."
+    end
+
     def goodbye
-      say "That's all folks!"
+      say "Vroom...Vroom..."
     end
   end
 end
