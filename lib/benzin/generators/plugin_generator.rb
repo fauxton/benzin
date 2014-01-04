@@ -13,6 +13,8 @@ module Benzin
 
     class_option :mountable, type: :boolean, default: true, desc: "Generate mountable isolated application"
 
+    class_option :skip_sprockets, type: :boolean, default: true, desc: "Skip Sprockets files"
+
     class_option :dummy_path, type: :string, default: "spec/dummy", desc: "Create dummy application at given path"
 
     def finish_template
