@@ -26,7 +26,14 @@ module Benzin
 
     def benzin_customization
       invoke :hello
+      invoke :prune_files
       invoke :goodbye
+    end
+
+    def prune_files
+      say "Removing unneeded files..."
+      build :remove_asset_files
+      build :remove_html_views
     end
 
     def hello

@@ -14,6 +14,14 @@ module Benzin
       run "rvm --create --ruby-version #{ruby}"
     end
 
+    def remove_asset_files
+      run "rm -rf app/assets"
+    end
+
+    def remove_html_views
+      run "rm -rf app/views"
+    end
+
     def ruby
       "ruby-#{RubyVersion::MAJOR}-p#{RubyVersion::PATCH_LEVEL}"
     end
