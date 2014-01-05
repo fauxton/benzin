@@ -43,5 +43,11 @@ module Benzin
     def goodbye
       say "Vroom...Vroom..."
     end
+
+    protected
+
+    def get_builder_class
+      Benzin::PluginBuilder
+    end
   end
 end
