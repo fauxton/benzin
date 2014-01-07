@@ -5,6 +5,6 @@ require File.expand_path(File.join('..', 'lib', 'benzin', 'plugin_builder'), Fil
 
 templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
 Benzin::PluginGenerator.source_root templates_root
-Benzin::PluginGenerator.source_paths << Rails::Generators::PluginNewGenerator.source_root << templates_root
+Benzin::PluginGenerator.source_paths << Rails::Generators::PluginGenerator.source_root << templates_root
 
 Benzin::PluginGenerator.start

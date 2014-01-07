@@ -1,9 +1,9 @@
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
-require 'rails/generators/rails/plugin_new/plugin_new_generator'
+require 'rails/generators/rails/plugin/plugin_generator'
 
 module Benzin
-  class PluginGenerator < Rails::Generators::PluginNewGenerator
+  class PluginGenerator < Rails::Generators::PluginGenerator
     class_option :database, type: :string, aliases: '-d', default: 'postgresql',
       desc: "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
