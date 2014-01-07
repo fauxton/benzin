@@ -5,21 +5,37 @@ module Benzin
   end
 
   class PluginBuilder < Rails::PluginBuilder
+    def app
+      directory 'app'
+      empty_directory_with_keep_file 'app/models'
+      empty_directory_with_keep_file 'app/controllers'
+    end
+
     def bundle
-      run "rvm use #{ruby}@#{app_name}"
+      run "rvm use #{ruby}@#{name}"
       run "bundle install"
     end
 
     def create_ruby_version_and_gemset
       run "rvm --create --ruby-version #{ruby}"
+      run "rvm gemset create #{name}"
     end
 
     def remove_asset_files
-      run "rm -rf app/assets"
+      remove_dir "app/assets"
+    end
+
+    def readme
+      remove_file "README.rdoc"
+      template("README.md.erb", "README.md", force: true)
     end
 
     def remove_html_views
-      run "rm -rf app/views"
+      remove_dir "app/views"
+    end
+
+    def remove_helpers
+      remove_dir "app/helpers"
     end
 
     def ruby

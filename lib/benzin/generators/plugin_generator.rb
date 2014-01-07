@@ -19,6 +19,8 @@ module Benzin
 
     class_option :dummy_path, type: :string, default: "spec/dummy", desc: "Create dummy application at given path"
 
+    class_option :skip_action_view, type: :boolean, aliases: '-V', default: true, desc: 'Skip Action View files'
+
     def finish_template
       invoke :benzin_customization
       super
@@ -26,14 +28,32 @@ module Benzin
 
     def benzin_customization
       invoke :hello
+      invoke :setup_ruby
+      invoke :bundle
+      invoke :custom_readme
       invoke :prune_files
       invoke :goodbye
+    end
+
+    def setup_ruby
+      say "Setting up Ruby..."
+      build :create_ruby_version_and_gemset
+    end
+
+    def custom_readme
+      say "Converting README to markdown..."
+      build :readme
+    end
+
+    def bundle
+      build :bundle
     end
 
     def prune_files
       say "Removing unneeded files..."
       build :remove_asset_files
       build :remove_html_views
+      build :remove_helpers
     end
 
     def hello
@@ -43,6 +63,13 @@ module Benzin
     def goodbye
       say "Vroom...Vroom..."
     end
+
+    def noop
+    end
+
+    alias :create_public_stylesheets_files :noop
+    alias :create_images_directory :noop
+    alias :create_javascript_files :noop
 
     protected
 
